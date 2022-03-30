@@ -6,9 +6,11 @@
 
         <meta name="description" content="">
         <meta name="author" content="">
-
+        {% block title %}
         <title>Medic Care Bootstrap 5 CSS Template</title>
+        {% endblock %}
 
+           {% block basiclinks %}
         <!-- CSS FILES -->        
         <link rel="preconnect" href="https://fonts.googleapis.com">
         
@@ -25,18 +27,24 @@
         <link href= "{{ url_for('static',filename="css/owl.theme.default.min.css") }}"  rel="stylesheet">
 
         <link href= "{{ url_for('static',filename="css/templatemo-medic-care.css") }}"  rel="stylesheet">
+        {% endblock %}
+
+        {% block morelinks %}
+
+        {% endblock  %}
 <!--
 
-TemplateMo 566 Medic Care
-
-https://templatemo.com/tm-566-medic-care
-
+    TemplateMo 566 Medic Care
+    
+    https://templatemo.com/tm-566-medic-care
+    
 -->
-    </head>
+</head>
+
+<body id="top">
     
-    <body id="top">
     
-        <main>
+    {% block content %}
 
             <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
                 <div class="container">
@@ -93,11 +101,10 @@ https://templatemo.com/tm-566-medic-care
                 </div>
             </nav>
 
-           {% block content %}
 
            {% endblock %}
 
-        </main>
+        
 
         <footer class="site-footer section-padding" id="contact">
             <div class="container">
