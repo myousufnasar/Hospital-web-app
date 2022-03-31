@@ -1,10 +1,11 @@
 from app import app
-from flask import  render_template
-
-
+from flask import  render_template, request, abort, flash, url_for, redirect
+from . import db
+from models import Users
+from flask_login import login_user, login_required, logout_user, current_user
 
 @app.route("/")
-def hello_world():
+def home():
     return render_template('index.html')
 
 
@@ -12,10 +13,63 @@ def hello_world():
 def login():
     return render_template('login.html')
 
-
-@app.route("/signup")
+# route to signup users
+@app.route("/signup", methods=["POST", "GET"])
 def signup():
-    return render_template('signup.html')
+   if request.method == "POST":
+      firstname = str(request.form('firstname')).title()
+      lastname = str(request.form('lastname')).title()
+      sex = str(request.form('sex')).title()
+      address = str(request.form('address')).title()
+      dob = str(request.form('dob')).title()
+      email = str(request.form('email')).title()
+      telephone = str(request.form('telephone')).title()
+      password = str(request.form('password'))
+      
+    #   check for existence
+      check = Users.query.filter_by(email=email).first()
+      if check:
+            flash("An Account has alredy been Registered with this email ")
+      else:
+
+        #   saves user if not found
+          save_user = Users(firstname=firstname, lastname=lastname, email=email, password=password, phone=telephone, address=address, sex=sex, dob=dob )
+          db.session.add(save_user)
+          db.session.commit()
+        
+
+          user = Users.query.filter_by(
+                email=email, password=password).first()
+          if user:
+                login_user(user, remember=True)
+                return redirect(url_for("views.home"))
+
+
+
+
+   return render_template('signup.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @app.route("/about")

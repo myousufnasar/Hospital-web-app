@@ -1,28 +1,45 @@
 from . import db
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
-class Patients_details (db.Model):
+
+
+class Users (db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    FirstName = db.Column(db.String(50), nullable=False)
-    LastName = db.Column(db.String(50), nullable=False)
-    sex = db.Column(db.String(50), nullable=False)
-    address = db.Column(db.String(50), nullable=False)
-    dob = db.Column(db.Date, nullable=False)
-    telephone = db.Column(db.Integer, nullable=False)
-    email = db.Column(db.String(50), nullable=False)
+    FirstName = db.Column(db.String(50), nullable=True)
+    LastName = db.Column(db.String(50), nullable=True)
+    sex = db.Column(db.String(50), nullable=True)
+    address = db.Column(db.String(50), nullable=True)
+    dob = db.Column(db.String(50), nullable=True)
+    telephone = db.Column(db.String(50), nullable=True)
+    email = db.Column(db.String(50), nullable=True)
     patient_image = db.Column(db.String(250), nullable=True)
-    password = db.Column(db.String(50), nullable=False) 
-    allergies = db.Column(db.String(50), nullable=True)
-    addresses = db.Column(db.String(50), nullable=False)
-    medical_details = db.relationship('Medical_details', uselist=False, lazy=True)
+    password = db.Column(db.String(50), nullable=True) 
+    allergies = db.Column(db.String(500), nullable=True)
+    medical_details = db.relationship('Medical_details', uselist=True, lazy=True)
+    time = db.Column(db.Date, default = datetime.datetime.now())
+
+
 
 class Medical_details(db.Model):
-    id = db.Column(db.Integer,primary_key=True, nullable=False)
+    id = db.Column(db.Integer,primary_key=True, nullable=True)
     person_id = db.ForeignKey('patients_details.id')
-    height = db.Column(db.Integer, nullable=False)
-    weight = db.Column(db.Integer, nullable=False)
+    height = db.Column(db.Integer, nullable=True)
+    weight = db.Column(db.Integer, nullable=True)
     last_visit = db.Column(db.Date, nullable=True)
-    date_created = db.Column(db.Date, nullable=False)
-    symptoms = db.Column(db.String(250), nullable=False)
-    diagnosis = db.Column(db.String(250), nullable=False)
-    med_img = db.Column(db.String(250), nullable=False)
+    date_created = db.Column(db.Date, nullable=True)
+    symptoms = db.Column(db.String(250), nullable=True)
+    diagnosis = db.Column(db.String(250), nullable=True)
+    med_img = db.Column(db.String(250), nullable=True)
+
+
+# class Appointments(db.Model):
+#     id = db.Column(db.Integer,primary_key=True, nullable=True)
+#     person_id = db.ForeignKey('patients_details.id')
+#     height = db.Column(db.Integer, nullable=True)
+#     weight = db.Column(db.Integer, nullable=True)
+#     last_visit = db.Column(db.Date, nullable=True)
+#     date_created = db.Column(db.Date, nullable=True)
+#     symptoms = db.Column(db.String(250), nullable=True)
+#     diagnosis = db.Column(db.String(250), nullable=True)
+#     med_img = db.Column(db.String(250), nullable=True)
