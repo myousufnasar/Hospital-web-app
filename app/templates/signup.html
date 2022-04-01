@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iofrm</title>
+    <title>Sign Up -Smart Health</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/bootstrap.min.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/fontawesome-all.min.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/iofrm-style.css") }}">
@@ -14,7 +14,7 @@
         <div class="website-logo">
             <a href="index.html">
                 <div class="logo">
-                    <img class="logo-size" src="{{ url_for('static', filename="images/logo-light.svg")}}  alt="">
+                    <img class="logo-size" src="{{ url_for('static', filename="images/logo-light.svg") }}"  alt="">
                 </div>
             </a>
         </div>
@@ -31,33 +31,59 @@
                 <div class="form-content form-sm">
                     <div class="form-items">
                         <h3 class="form-title">Complete the form</h3>
-                        <form>
+                        <form method="Post">
                             <div class="form-group">
                                 <label>Personal Information</label>
-                                <input type="text" class="form-control" name="name" placeholder="Full Name" required>
-                                <input type="email" class="form-control" name="email" placeholder="E-mail Address" required>
+                                <input type="text" class="form-control" name="firstname" placeholder="First Name" required>
+                                <input type="text" class="form-control" name="lastname" placeholder="Last Name" required>
+                            </div>
+                           
+                            <div class="form-group">
+                                <label>Sex</label>
+                                <div class="custom-options">
+                                    <input type="radio" id="rad1" name="sex"><label for="rad1">Male</label>
+                                    <input type="radio" id="rad2" name="sex"><label for="rad2">Female</label>
+                                </div>
+                                <label>Date of birth</label>
+                                <div class="custom-options">
+                                 <input id="dob" type="datetime-local" name="dob">
+                                 
+                                </div>
+                                   
+
+
+
                             </div>
                             <div class="form-group">
-                                <label>Education</label>
-                                <div class="custom-options">
-                                    <input type="radio" id="rad1" name="rad"><label for="rad1">Master Degree</label>
-                                    <input type="radio" id="rad2" name="rad"><label for="rad2">Bachelor Degree</label>
-                                    <input type="radio" id="rad3" name="rad"><label for="rad3">Diploma</label>
-                                    <input type="radio" id="rad4" name="rad"><label for="rad4">Other</label>
-                                </div>
+                                <label>Contact</label>
+                            
                                 <div class="form-row">
                                     <div class="col">
-                                        <input type="text" class="form-control" placeholder="School Name">
+                                        <input type="phone" class="form-control" value="+90 " placeholder="Phone Number">
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" placeholder="Graduation date">
+                                        <input type="email" class="form-control" placeholder="Example@mail.com">
                                     </div>
                                 </div>
+
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="country" class="form-control"  placeholder="Nationality">
+                                    </div>
+                                    <div class="col">
+                                        <input type="address" class="form-control" placeholder="Address">
+                                    </div>
+                                </div>
+
+                                <label>Chose a password</label>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="password" class="form-control" placeholder="Password">
+                                    </div>
+
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Tell us about you in short</label>
-                                <textarea class="form-control"></textarea>
-                            </div>
+                        
                             <div class="form-button text-right">
                                     <button type="button" class="btn btn-light">Cancel</button><button id="submit" type="submit" class="ibtn">Save</button>
                             </div>

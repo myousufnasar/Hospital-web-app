@@ -16,14 +16,14 @@ class Users (db.Model):
     patient_image = db.Column(db.String(250), nullable=True)
     password = db.Column(db.String(50), nullable=True) 
     allergies = db.Column(db.String(500), nullable=True)
-    medical_details = db.relationship('Medical_details', uselist=True, lazy=True)
-    time = db.Column(db.Date, default = datetime.datetime.now())
+    medical_details = db.relationship('Medical_details', backref='person', uselist=False, lazy=True)
+    time = db.Column(db.DateTime(timezone=True), default=func.now())
 
 
 
 class Medical_details(db.Model):
     id = db.Column(db.Integer,primary_key=True, nullable=True)
-    person_id = db.ForeignKey('patients_details.id')
+    person_id = db.ForeignKey(db.Integer, 'users.id')
     height = db.Column(db.Integer, nullable=True)
     weight = db.Column(db.Integer, nullable=True)
     last_visit = db.Column(db.Date, nullable=True)

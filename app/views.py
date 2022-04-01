@@ -1,12 +1,12 @@
 from app import app
 from flask import  render_template, request, abort, flash, url_for, redirect
 from . import db
-from models import Users
+from .models import Users
 from flask_login import login_user, login_required, logout_user, current_user
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template('index.html',  title="Home")
 
 
 @app.route("/login")
@@ -17,14 +17,14 @@ def login():
 @app.route("/signup", methods=["POST", "GET"])
 def signup():
    if request.method == "POST":
-      firstname = str(request.form('firstname')).title()
-      lastname = str(request.form('lastname')).title()
-      sex = str(request.form('sex')).title()
-      address = str(request.form('address')).title()
-      dob = str(request.form('dob')).title()
-      email = str(request.form('email')).title()
-      telephone = str(request.form('telephone')).title()
-      password = str(request.form('password'))
+      firstname = str(request.form.get('firstname')).title()
+      lastname = str(request.form.get('lastname')).title()
+      sex = str(request.form.get('sex')).title()
+      address = str(request.form.get('address')).title()
+      dob = str(request.form.get('dob')).title()
+      email = str(request.form.get('email')).title()
+      telephone = str(request.form.get('telephone')).title()
+      password = str(request.form.get('password'))
       
     #   check for existence
       check = Users.query.filter_by(email=email).first()
@@ -47,7 +47,7 @@ def signup():
 
 
 
-   return render_template('signup.html')
+   return render_template('signup.html', title="Sign Up")
 
 
 

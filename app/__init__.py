@@ -17,7 +17,7 @@ db.init_app(app)
 
 from . import views
 
-from .models import Patients_details
+from .models import Users
 #  create_database(app)
 
 
