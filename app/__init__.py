@@ -16,7 +16,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///{}".format(DB_NAME)
 db.init_app(app)
 
 from . import views
-
+from .staff.routes import views
 from .models import Users
 #  create_database(app)
 
