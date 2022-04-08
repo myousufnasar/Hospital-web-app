@@ -9,9 +9,29 @@ def home():
     return render_template('index.html',  title="Home")
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template('login.html')
+   if request.method == "POST":
+      
+      email = str(request.form.get('email')).title()
+      password = str(request.form.get('password'))
+      
+    #   check for existence
+      check = Users.query.filter_by(email=email, password=password).first()
+      if not check:
+            # print("==========================>User already exist")
+            flash("No user with the given details exist, Please check your email address or password and try again")
+            abort(404)
+      else:
+        #   print("=======================>User saved")
+        #   saves user if not found
+        login_user(check, remember=True)
+        role = current_user.role
+        
+        return redirect(url_for(str(role).lower()))
+
+
+   return render_template('login.html')
 
 # route to signup users
 @app.route("/signup", methods=["POST", "GET"])
@@ -89,21 +109,21 @@ def appointments():
 def new2():
     return render_template('admin_index.html')
 
-@app.route("/new3", methods=["POST", "GET"])
-def new3():
-    if request.method == "GET":
-        msg = { "temp": [47, 50, 100, 200], 
-                "age":20,
-                "bloodpressure": [100, 50,]
-        }
-    if request.method == "POST":
-        weight = str(request.form.get('weight')).title()
-        print(f"===========================> this is {weight}")
-        temperature = str(request.form.get('temperature')).title()
-        print(f"===========================> this is {temperature}")
-        bloodpressure = str(request.form.get('bloodpressure')).title()
-        print(f"===========================> this is {bloodpressure}")
-        return redirect(url_for("staff"))
-        # return render_template("result.html",msg = msg)
+# @app.route("/new3", methods=["POST", "GET"])
+# def new3():
+#     if request.method == "GET":
+#         msg = { "temp": [47, 50, 100, 200], 
+#                 "age":20,
+#                 "bloodpressure": [100, 50,]
+#         }
+#     if request.method == "POST":
+#         weight = str(request.form.get('weight')).title()
+#         print(f"===========================> this is {weight}")
+#         temperature = str(request.form.get('temperature')).title()
+#         print(f"===========================> this is {temperature}")
+#         bloodpressure = str(request.form.get('bloodpressure')).title()
+#         print(f"===========================> this is {bloodpressure}")
+#         return redirect(url_for("staff"))
+#         # return render_template("result.html",msg = msg)
       
-    return render_template('admin_index_form.html', msg = msg)  
+#     return render_template('admin_index_form.html', msg = msg)  
