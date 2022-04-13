@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>{{ title }} -Smart Health</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ url_for('static', filename="assets/vendors/mdi/css/materialdesignicons.min.css") }}">
     <link rel="stylesheet" href="{{ url_for('static', filename="assets/vendors/css/vendor.bundle.base.css") }}">
@@ -39,8 +39,8 @@
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
-                  <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
-                  <span>Gold Member</span>
+                  <h5 class="mb-0 font-weight-normal">Dr Hussein kassem</h5>
+                  <span>Infectious Disease</span>
                 </div>
               </div>
               <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -84,14 +84,14 @@
             <span class="nav-link">Navigation</span>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="#">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
-              <span class="menu-title">Dashboard</span>
+              <span class="menu-title">Diagnose</span>
             </a>
           </li>
-          <li class="nav-item menu-items">
+          <!-- <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
@@ -114,13 +114,13 @@
               </span>
               <span class="menu-title">Form Elements</span>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/tables/basic-table.html">
+            <a class="nav-link" href="#appointments">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
               </span>
-              <span class="menu-title">Tables</span>
+              <span class="menu-title">Appointments</span>
             </a>
           </li>
           <li class="nav-item menu-items">
@@ -136,7 +136,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-contacts"></i>
               </span>
-              <span class="menu-title">Icons</span>
+              <span class="menu-title">Colleagues</span>
             </a>
           </li>
           <li class="nav-item menu-items">
@@ -144,7 +144,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-security"></i>
               </span>
-              <span class="menu-title">User Pages</span>
+              <span class="menu-title">Security</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="auth">
@@ -162,12 +162,15 @@
               <span class="menu-icon">
                 <i class="mdi mdi-file-document-box"></i>
               </span>
-              <span class="menu-title">Documentation</span>
+              <span class="menu-title">My Documents</span>
             </a>
           </li>
         </ul>
       </nav>
       <!-- partial -->
+
+
+
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row">
@@ -324,7 +327,7 @@
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
                     <img class="img-xs rounded-circle" src="{{ url_for('static', filename="assets/images/faces/face15.jpg") }}" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Hussein kassem</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
@@ -342,7 +345,7 @@
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
+                  <a class="dropdown-item preview-item" href="/logout" >
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-logout text-danger"></i>
@@ -384,7 +387,7 @@
                         </div>
                       </div>
                     </div>
-                    <h6 class="text-muted font-weight-normal">Diagnosed Disease sample</h6>
+                    <h6 class="text-muted font-weight-normal">Cancer</h6>
                   </div>
                 </div>
               </div>
@@ -394,7 +397,7 @@
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">$17.34</h3>
+                          <h3 class="mb-0">%17.34</h3>
                           <p class="text-success ml-2 mb-0 font-weight-medium">+11%</p>
                         </div>
                       </div>
@@ -404,7 +407,7 @@
                         </div>
                       </div>
                     </div>
-                    <h6 class="text-muted font-weight-normal">Revenue current</h6>
+                    <h6 class="text-muted font-weight-normal">Covid-19</h6>
                   </div>
                 </div>
               </div>
@@ -414,7 +417,7 @@
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">$12.34</h3>
+                          <h3 class="mb-0">%12.34</h3>
                           <p class="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
                         </div>
                       </div>
@@ -424,7 +427,7 @@
                         </div>
                       </div>
                     </div>
-                    <h6 class="text-muted font-weight-normal">Daily Income</h6>
+                    <h6 class="text-muted font-weight-normal">Flu</h6>
                   </div>
                 </div>
               </div>
@@ -434,7 +437,7 @@
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">$31.53</h3>
+                          <h3 class="mb-0">%31.53</h3>
                           <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
                         </div>
                       </div>
@@ -444,7 +447,7 @@
                         </div>
                       </div>
                     </div>
-                    <h6 class="text-muted font-weight-normal">Expense current</h6>
+                    <h6 class="text-muted font-weight-normal">Diarrhea</h6>
                   </div>
                 </div>
               </div>
@@ -461,20 +464,20 @@
                     <canvas id="transaction-history" class="transaction-chart"></canvas>
                     <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                       <div class="text-md-center text-xl-left">
-                        <h6 class="mb-1">Transfer to Paypal</h6>
+                        <h6 class="mb-1">Breast Cancer</h6>
                         <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
                       </div>
                       <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                        <h6 class="font-weight-bold mb-0">$236</h6>
+                        <h6 class="font-weight-bold mb-0">%36</h6>
                       </div>
                     </div>
                     <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                       <div class="text-md-center text-xl-left">
-                        <h6 class="mb-1">Tranfer to Stripe</h6>
+                        <h6 class="mb-1">SARS-Covid-19</h6>
                         <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
                       </div>
                       <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                        <h6 class="font-weight-bold mb-0">$593</h6>
+                        <h6 class="font-weight-bold mb-0">%93</h6>
                       </div>
                     </div>
                   </div>
@@ -582,7 +585,11 @@
                 </div>
               </div>
             </div>
-            <div class="row">
+
+
+            <!-- <div class="row">
+
+
               <div class="col-sm-4 grid-margin">
                 <div class="card">
                   <div class="card-body">
@@ -640,12 +647,14 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row ">
+            </div> -->
+          
+          
+            <div class="row " id="appointments">
               <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Order Status</h4>
+                    <h4 class="card-title" >Appointments</h4>
                     <div class="table-responsive">
                       <table class="table">
                         <thead>
@@ -677,7 +686,7 @@
                             </td>
                             <td>
                               <img src="{{ url_for('static', filename="assets/images/faces/face1.jpg") }}" alt="image" />
-                              <span class="pl-2">Henry Klein</span>
+                              <span class="pl-2">Hussein kassem</span>
                             </td>
                             <td> 02312 </td>
                             <td> $14,500 </td>
@@ -848,7 +857,9 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+
+
+              <!-- <div class="col-md-6 col-xl-4 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Portfolio Slide</h4>
@@ -887,7 +898,9 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
+             
+             
               <div class="col-md-12 col-xl-4 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
@@ -943,7 +956,7 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Visitors by Countries</h4>
+                    <h4 class="card-title">Covid cases by Countries</h4>
                     <div class="row">
                       <div class="col-md-5">
                         <div class="table-responsive">

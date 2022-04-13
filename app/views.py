@@ -105,9 +105,10 @@ def appointments():
     return render_template('appointments.html')
 
 
-@app.route("/new2")
-def new2():
-    return render_template('admin_index.html')
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for("login"))
 
 # @app.route("/new3", methods=["POST", "GET"])
 # def new3():
