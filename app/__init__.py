@@ -1,6 +1,6 @@
 import os
 from flask_login import LoginManager
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 # from os import path
 # from flask_login import LoginManager, login_manager
@@ -30,6 +30,17 @@ def load_user(id):
      return Users.query.get(int(id))
 
  
+# ERROR PAGE HANDLER
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('error-404.html'), 404
+
+# ERROR PAGE HANDLER
+@app.errorhandler(500)
+def server_error(error):
+    return render_template('error-500.html'), 500
+
+
 
 #  return app
 

@@ -193,12 +193,10 @@
                   <label class="control-label col-md-3">Weight</label>
                   <div class="col-md-8">
                     <select class="form-control" id="exampleSelect1" name="weight" placeholder="Enter the Body Weight" required>
-                      <option value="" selected disabled hidden>Weight</option>
-                      <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                      <option value="" selected disabled hidden>Weight in KG</option>
+                      {% for weight in range(5,90) %}
+                      <option> {{weight}}</option>
+                      {% endfor %}
                   </select>
                 </div>
                 </div>
@@ -206,18 +204,18 @@
                   <label class="control-label col-md-3">Temperature</label>
                   <div class="col-md-8">
                     <select class="form-control" id="exampleSelect2" name="temperature" placeholder="Enter the Temperature" required>
-                      <option value="" selected disabled hidden>Temperature</option>
-                      {% for temp in msg.temp %}
+                      <option value="" selected disabled hidden>Temperature in Farenheit </option>
+                      {% for temp in range(89,101) %}
                       <option>{{temp}}</option>
                       {% endfor %}
                   </select>
                 </div>
                 </div>
                 <div class="form-group row">
-                  <label class="control-label col-md-3">Blood Pressure</label>
+                  <label class="control-label col-md-3">Blood Pressure (systolic Pressure)</label>
                   <div class="col-md-8">
-                  <select class="form-control" id="exampleSelect3" name="bloodpressure" placeholder="Enter the Blood Pressure" required>
-                    <option value="" selected disabled hidden>Blood Presure</option>
+                  <select class="form-control" id="exampleSelect3" name="bloodpressure" required>
+                    <option value="" selected disabled hidden>Blood Presure Mm Hg</option>
                     {% for press in msg.bloodpressure %}
                     <option>{{press}}</option>
                     {% endfor %}
