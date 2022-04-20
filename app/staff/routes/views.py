@@ -2,8 +2,16 @@ from app import app
 from flask import  render_template, request, abort, flash, url_for, redirect
 from ... import db
 from ...generic_functions.diagnose import Diagnose_patient 
-from ...models import Users
+from ...models import Users, Diagnosed_history
 from flask_login import login_user, login_required, logout_user, current_user
+from datetime import date, datetime
+
+today = date.today()
+now = datetime.now()
+time = now.strftime("%H:%M:%S")
+
+
+
 
 @app.route("/staff/diagnose", methods=["POST", "GET"])
 def diagnose():
@@ -22,11 +30,11 @@ def diagnose():
         sex = str(request.form.get('gender')).title() 
         other_symptoms = str(request.form.get('symptoms'))
         firstname = fullname.split(" ")[0]
-        lastname = firstname[1]
-
+        lastname = fullname.split(" ")[1]
+       #  print(fullname.split(" ")[1], "============>", fullname.split(" "))
 
        #  symptoms = [other_symptoms.split()] 
-        symptoms=["High_temperature","cold","dry cough"]
+        symptoms=[]
        #  ------ end of form---------
        #  ------ blood pressure
 
@@ -88,7 +96,7 @@ def diagnose():
 
 
            
-        if temperature < 97:
+        elif temperature < 97:
                if temperature < 90:
                       symptoms.append("critical_low_temperature")
                else:
@@ -101,13 +109,18 @@ def diagnose():
 
         
        
+       #  print(symptoms)
+        
 
+        patient = Diagnose_patient(firstname=firstname, lastname=lastname, age=age, sex=sex,bloodpressure=bloodpressure, weight=weight)
+        patient.diagnose(symptoms=symptoms)
+        if patient.diagnosis:
+           save_diagnosis = Diagnosed_history(firstname=firstname, lastname=lastname, diagnosed="".join(map(str, patient.diagnosis)), symptoms="".join(map(str, symptoms))) 
+           db.session.add(save_diagnosis)
+           db.session.commit()
 
-
-        diagnosis = Diagnose_patient(firstname=firstname, lastname=lastname, age=age, sex=sex,  bloodpressure=bloodpressure, weight=weight).diagnose(symptoms=symptoms)
-
-        print(diagnosis, "===================================>")    
-        return redirect(url_for("staff"))
+       #  print(diagnosed_patient, "===================================>")    
+        return render_template('staff_index.html',  doctor=doctor, title="Smart Diagnosis", patient=patient, date=today.strftime("%B %d, %Y"), time=time)
        
       
  return render_template('admin_index_form.html', msg = msg, doctor=doctor, title="Smart Diagnosis")  
@@ -118,4 +131,4 @@ def staff():
  doctor = current_user
  if request.method == "GET":
       
-         return render_template('staff_index.html',  doctor=doctor, title="Smart Diagnosis")  
+         return render_template('staff_index.html',  doctor=doctor, title="Smart Diagnosis", date=today.strftime("%B %d, %Y"), time=time)  

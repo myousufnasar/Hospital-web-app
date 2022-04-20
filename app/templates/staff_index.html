@@ -248,7 +248,7 @@
                       <img src="{{ url_for('static', filename="assets/images/faces/face4.jpg") }}" alt="image" class="rounded-circle profile-pic">
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
+                      <p class="preview-subject ellipsis mb-1">Dr Esra sent you a message</p>
                       <p class="text-muted mb-0"> 1 Minutes ago </p>
                     </div>
                   </a>
@@ -258,7 +258,7 @@
                       <img src="{{ url_for('static', filename="assets/images/faces/face2.jpg") }}" alt="image" class="rounded-circle profile-pic">
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
+                      <p class="preview-subject ellipsis mb-1">Dr Ali sent you a message</p>
                       <p class="text-muted mb-0"> 15 Minutes ago </p>
                     </div>
                   </a>
@@ -368,13 +368,13 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
+            <!-- This view will be iterated and populated by possible amount of diagnosis -->
         
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
-                          <!-- This view will be iterated and populated by possible amount of diagnosis -->
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
                           <h3 class="mb-0">%12.34</h3>
@@ -451,7 +451,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
 
 
@@ -462,24 +462,32 @@
                   <div class="card-body">
                     <h4 class="card-title">Diagnosed Information</h4>
                     <canvas id="transaction-history" class="transaction-chart"></canvas>
+                    {% if patient %}
+                    {% for i in patient.diagnosis %}
                     <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                       <div class="text-md-center text-xl-left">
-                        <h6 class="mb-1">Breast Cancer</h6>
-                        <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+                        <h6 class="mb-1">{{i.title()}}</h6>
+                        <p class="text-muted mb-0">{{date}}, {{time}}</p>
                       </div>
                       <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                        <h6 class="font-weight-bold mb-0">%36</h6>
+                        <!-- <h6 class="font-weight-bold mb-0">%36</h6> -->
                       </div>
                     </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if not patient %}
                     <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                       <div class="text-md-center text-xl-left">
-                        <h6 class="mb-1">SARS-Covid-19</h6>
-                        <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+                        <h6 class="mb-1">Your Diagnosis will appear here</h6>
+                        <p class="text-muted mb-0">{{date}}, {{time}}</p>
                       </div>
                       <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                        <h6 class="font-weight-bold mb-0">%93</h6>
+                        <h6 class="font-weight-bold mb-0">%99.99</h6>
                       </div>
                     </div>
+                    {% endif %}
+
                   </div>
                 </div>
               </div>

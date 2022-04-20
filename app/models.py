@@ -36,6 +36,15 @@ class Medical_details(db.Model):
     med_img = db.Column(db.String(250), nullable=True)
 
 
+class Diagnosed_history(db.Model):
+    id = db.Column(db.Integer,primary_key=True, nullable=True)
+    firstname = db.Column(db.String(250), nullable=True)
+    lastname = db.Column(db.String(250), nullable=True)
+    date = db.Column(db.String(250), nullable=True)
+    diagnosed = db.Column(db.String(), nullable=True)
+    symptoms = db.Column(db.String(), nullable=True)   
+
+
 # class Appointments(db.Model):
 #     id = db.Column(db.Integer,primary_key=True, nullable=True)
 #     person_id = db.ForeignKey('patients_details.id')
