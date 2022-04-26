@@ -83,6 +83,18 @@
         </li>
       </ul>
     </header>
+
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
@@ -181,12 +193,12 @@
           <div class="tile">
             <h3 class="tile-title">Smart Diagonosis</h3>
             <div class="tile-body">
-              <form method="Post">
+              <form method="Post" >
               <!-- <form class="form-horizontal" method="Post">  -->
                 <div class="form-group row">
                   <label class="control-label col-md-3">Name</label>
                   <div class="col-md-8">
-                    <input class="form-control" type="text" name=fullname placeholder="Enter full name" Required>
+                    <input class="form-control" type="text" name=fullname placeholder="Enter full name" Required="Enter Your Full Name">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -250,7 +262,7 @@
                 </div>
                 
                 
-                <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Diagnose</button>
+                <button class="btn btn-primary"  type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Diagnose</button>
                 <!-- <a class="btn btn-secondary"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a> -->
               </form>
             </div>
@@ -332,5 +344,9 @@
       	ga('send', 'pageview');
       }
     </script>
+
+
+
+
   </body>
 </html>

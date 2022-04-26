@@ -3,7 +3,7 @@ from flask import  render_template, request, abort, flash, url_for, redirect
 from ... import db
 from ...generic_functions.diagnose import Diagnose_patient 
 from ...models import Users, Diagnosed_history
-from flask_login import login_user, login_required, logout_user, current_user
+from flask_login import current_user
 from datetime import date, datetime
 
 today = date.today()
@@ -23,6 +23,12 @@ def diagnose():
         }
  if request.method == "POST":
         fullname = str(request.form.get('fullname')).title() 
+        print(len(fullname.split()),"=============================>>>>>")
+       #  if len(fullname.split()) < 1:
+       #         flash(message="Enter Full Name")
+               
+               
+
         weight = str(request.form.get('weight'))    
         temperature = int(request.form.get('temperature')) 
         bloodpressure = int(request.form.get('bloodpressure'))
@@ -30,6 +36,8 @@ def diagnose():
         sex = str(request.form.get('gender')).title() 
         other_symptoms = str(request.form.get('symptoms'))
         firstname = fullname.split(" ")[0]
+
+
         lastname = fullname.split(" ")[1]
        #  print(fullname.split(" ")[1], "============>", fullname.split(" "))
 
@@ -109,7 +117,7 @@ def diagnose():
 
         
        
-       #  print(symptoms)
+        print(symptoms)
         
 
         patient = Diagnose_patient(firstname=firstname, lastname=lastname, age=age, sex=sex,bloodpressure=bloodpressure, weight=weight)
@@ -118,9 +126,9 @@ def diagnose():
            save_diagnosis = Diagnosed_history(firstname=firstname, lastname=lastname, diagnosed="".join(map(str, patient.diagnosis)), symptoms="".join(map(str, symptoms))) 
            db.session.add(save_diagnosis)
            db.session.commit()
-
+        history = Diagnosed_history.query.limit(5).all()
        #  print(diagnosed_patient, "===================================>")    
-        return render_template('staff_index.html',  doctor=doctor, title="Smart Diagnosis", patient=patient, date=today.strftime("%B %d, %Y"), time=time)
+        return render_template('staff_index.html',  doctor=doctor, title="Smart Diagnosis", patient=patient, date=today.strftime("%B %d, %Y"), time=time, history=history)
        
       
  return render_template('admin_index_form.html', msg = msg, doctor=doctor, title="Smart Diagnosis")  

@@ -15,7 +15,7 @@ class Diagnose_patient:
        covid =["High_temperature","critical_high_temperature","cold","dry cough","loss of taste","head ache"]
        flu = ["High_temperature","cold"]
        stroke = ["bloodpressure_High","bloodpressure_low","head ache"]
-       possible = ["cancer ","covid ","flu ","stroke "]
+       possible = ["cancer","covid","flu","stroke"]
 
 
 
@@ -31,10 +31,12 @@ class Diagnose_patient:
                possible.append("This Patient has a very High Blood pressure Advise administer relaxatives, Stroke Risk is High")
 
            if i == "bloodpressure_low":
-               possible.append("This Patient has a very Low blood presure patient could be or have lost a lot of blood, check heart rate and ensure blood flow to the brain")
+               possible.append("This Patient has a very LOW blood presure patient could be or have lost a lot of blood, check heart rate and ensure blood flow to the brain")
            
         #    print(possible,"========================================================>>>>>")
+        #    print({i},"========================================================>>>>>")
            if i not in cancer:
+               print(i,"=========================> not found in cancer ")
                if "cancer" in possible:
                 print(f"Removing cancer {i} not found")
                
@@ -68,3 +70,4 @@ class Diagnose_patient:
 
 # print(diagnose)
 # print(patient.diagnosis)
+
